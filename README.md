@@ -389,34 +389,4 @@ python export.py --weights "runs\train\exp2\weights\best.pt" --include onnx --im
 python -c "import onnx; m=onnx.load(r'runs\train\exp2\weights\best.onnx'); print(m.ir_version); print([(o.domain, o.version) for o in m.opset_import])"
 ```
 
-## 八、推送到 GitHub
 
-首次关联远程仓库：
-
-```powershell
-cd E:\YOLO
-git remote add origin https://github.com/QingYuan-Chen/Yolo_traing.git
-git branch -M main
-```
-
-提交说明文件和脚本：
-
-```powershell
-git add README.md .gitignore yolo_new yolov5_train K230_Run
-git commit -m "Add YOLO training conversion and deployment guide"
-git push -u origin main
-```
-
-不建议直接提交：
-
-```text
-merged/
-Model_Traning/
-.conda_envs/
-.conda_pkgs/
-*.pt
-*.onnx
-*.kmodel
-```
-
-这些内容体积大，或者属于本机环境，不适合直接放进 GitHub 仓库。
