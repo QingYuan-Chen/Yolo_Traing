@@ -1,0 +1,2 @@
+# Yolo_traing
+这是一个yolo模型训练和转换的仓库,包含经典yolov5模型以及yolov8往后的新结构模型训练
