@@ -48,6 +48,33 @@ python train.py --weights "E:\YOLO\Model_Traning\weights\yolov5\yolov5n.pt"
 
 注意：`.pt` 预训练模型只是训练起点，不是训练代码本身。删除不用的预训练模型不会影响已经训练好的 `best.pt`，但如果脚本引用了被删除的模型路径，下次训练会失败。
 
+## weights 下载链接方案
+
+`weights` 目录里的 `.pt` 文件属于大模型文件，不适合直接提交到普通 Git 仓库。仓库中保留两个脚本：
+
+```powershell
+.\Model_Traning\prepare_weight_release_assets.ps1
+.\Model_Traning\download_weights.ps1
+```
+
+打包发布用：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Model_Traning\prepare_weight_release_assets.ps1
+```
+
+这个脚本会在桌面生成 `yolo-weight-release-assets` 文件夹，里面有一个 `weights.zip`。把它上传到 GitHub Release，Release tag/name 使用：
+
+```text
+weights-pretrained
+```
+
+别人 clone 仓库后下载权重用：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Model_Traning\download_weights.ps1
+```
+
 ## wheels 目录说明
 
 `wheels` 目录中存放的是 Python 离线安装包，文件后缀通常是 `.whl`。
