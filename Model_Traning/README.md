@@ -93,3 +93,36 @@ wheels  = Python 软件包安装文件，例如 .whl
 ```
 
 所以 `wheels` 不是模型库，也不是训练结果。它主要用于无网络、下载慢、或者需要复现 Python 环境时安装依赖。
+
+## wheels 下载链接方案
+
+`wheels` 目录体积很大，不适合直接提交到普通 Git 仓库。仓库中保留两个脚本：
+
+```powershell
+.\Model_Traning\prepare_wheel_release_assets.ps1
+.\Model_Traning\download_wheels.ps1
+```
+
+打包发布用：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Model_Traning\prepare_wheel_release_assets.ps1
+```
+
+这个脚本会在桌面生成 `yolo-wheel-release-assets` 文件夹，其中普通 wheel 会打包成 `wheels-non-torch.zip`，超大的 `torch` wheel 会切成多个 `.partXX` 分片。把这些文件上传到 GitHub Release，Release tag/name 使用：
+
+```text
+wheels-cu128
+```
+
+别人 clone 仓库后下载依赖用：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\Model_Traning\download_wheels.ps1
+```
+
+下载完成后，离线安装依赖：
+
+```powershell
+pip install --no-index --find-links .\Model_Traning\wheels -r .\Model_Traning\requirements.txt
+```
