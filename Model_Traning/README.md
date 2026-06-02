@@ -50,17 +50,17 @@ python train.py --weights "E:\YOLO\Model_Traning\weights\yolov5\yolov5n.pt"
 
 ## weights 下载链接方案
 
-`weights` 目录里的 `.pt` 文件属于大模型文件，不适合直接提交到普通 Git 仓库。仓库中保留两个脚本：
+`weights` 目录里的 `.pt` 文件属于大模型文件，不适合直接提交到普通 Git 仓库。仓库中保留统一脚本：
 
 ```powershell
-.\Model_Traning\prepare_weight_release_assets.ps1
-.\Model_Traning\download_weights.ps1
+.\Model_Traning\prepare_release_assets.ps1
+.\Model_Traning\download_assets.ps1
 ```
 
 打包发布用：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\Model_Traning\prepare_weight_release_assets.ps1
+powershell -ExecutionPolicy Bypass -File .\Model_Traning\prepare_release_assets.ps1 weights
 ```
 
 这个脚本会在桌面生成 `yolo-weight-release-assets` 文件夹，里面有一个 `weights.zip`。把它上传到 GitHub Release，Release tag/name 使用：
@@ -72,7 +72,7 @@ weights-pretrained
 别人 clone 仓库后下载权重用：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\Model_Traning\download_weights.ps1
+powershell -ExecutionPolicy Bypass -File .\Model_Traning\download_assets.ps1 weights
 ```
 
 ## wheels 目录说明
@@ -123,17 +123,17 @@ wheels  = Python 软件包安装文件，例如 .whl
 
 ## wheels 下载链接方案
 
-`wheels` 目录体积很大，不适合直接提交到普通 Git 仓库。仓库中保留两个脚本：
+`wheels` 目录体积很大，不适合直接提交到普通 Git 仓库。仓库中使用同一组统一脚本：
 
 ```powershell
-.\Model_Traning\prepare_wheel_release_assets.ps1
-.\Model_Traning\download_wheels.ps1
+.\Model_Traning\prepare_release_assets.ps1
+.\Model_Traning\download_assets.ps1
 ```
 
 打包发布用：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\Model_Traning\prepare_wheel_release_assets.ps1
+powershell -ExecutionPolicy Bypass -File .\Model_Traning\prepare_release_assets.ps1 wheels
 ```
 
 这个脚本会在桌面生成 `yolo-wheel-release-assets` 文件夹，其中普通 wheel 会打包成 `wheels-non-torch.zip`，超大的 `torch` wheel 会切成多个 `.partXX` 分片。把这些文件上传到 GitHub Release，Release tag/name 使用：
@@ -145,7 +145,7 @@ wheels-cu128
 别人 clone 仓库后下载依赖用：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\Model_Traning\download_wheels.ps1
+powershell -ExecutionPolicy Bypass -File .\Model_Traning\download_assets.ps1 wheels
 ```
 
 下载完成后，离线安装依赖：
