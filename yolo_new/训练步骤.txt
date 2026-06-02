@@ -57,7 +57,4 @@
 **8.模型转换**
 - 在终端中启用WSL
 -输入命令docker start -ai k230 ,启用k230容器
--在容器中输入命令sudo service ssh restart 启用SSH端口
-_按ctrl+P和ctrl+Q退出
--在vscode中远程连接SSH端口,输入密码12345678
--将需要转换的.onnx模型放在目录下,运行conver.py文件转换出Kmodel模型
+-准备校准数据集(可用训练数据集中的test集),copy到容器中

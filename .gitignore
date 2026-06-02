@@ -1,2 +1,29 @@
 .vscode/
-Model Traning/
+
+# Local datasets and historical working folders
+merged/
+Model_Traning/.venv/
+Model_Traning/.vscode/
+Model_Traning/wheels/
+# Local conda environments and package caches
+.conda_envs/
+.conda_pkgs/
+
+# Training outputs and generated artifacts
+runs/
+**/runs/
+**/__pycache__/
+*.pyc
+*.cache
+
+# Large model artifacts. Upload them to GitHub Releases or external storage if needed.
+*.pt
+*.pth
+*.onnx
+*.kmodel
+*.engine
+*.tflite
+
+# Cloned upstream repository. Re-clone it with the command in README.md.
+yolov5_train/yolov5/
+yolov5_train/yolov5/runs/

@@ -14,7 +14,7 @@ import aidemo# type: ignore
 class FaceDetectionApp(AIBase):
     def __init__(self, kmodel_path, model_input_size, anchors, confidence_threshold=0.5, nms_threshold=0.2, rgb888p_size=[224,224], display_size=[1920,1080], debug_mode=0):
         super().__init__(kmodel_path, model_input_size, rgb888p_size, debug_mode)  # 调用基类的构造函数
-        self.class_id = ["cat", "chicken", "cow", "dog", "fox", "goat", "horse", "person", "racoon", "skunk"]
+        self.class_id = ['ball']  # 类别ID列表，根据实际模型类别进行修改]
         self.kmodel_path = kmodel_path  # 模型文件路径
         self.model_input_size = model_input_size  # 模型输入分辨率
         self.confidence_threshold = confidence_threshold  # 置信度阈值
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     # 设置模型路径和其他参数
     kmodel_path = "/sdcard/best.kmodel"
     # 其它参数
-    confidence_threshold = 0.5
+    confidence_threshold = 0.7
     nms_threshold = 0.2
     anchor_len = None
     det_dim = 4
